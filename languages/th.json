@@ -1,0 +1,19 @@
+{
+    "MUSIC": {
+        "ENDED": "เพลงจบแล้ว",
+        "PLAYING": "เพลงหยุดกำลังเล่น",
+        "STOPED": "เพลงหยุดแล้ว",
+        "STOP": "เพลงหยุด",
+        "SKIP": "เพลงถูกข้าม",
+        "SKIPED": "เพลงถูกข้ามแล้ว",
+        "ADD_QUEUE": "`เพิ่มเพลง [${track.title || track.name}](${track.uri || track.url}) ลงในคิวแล้ว`",
+        "ADD_PLAYLISTS": "`เพิ่มเพลย์ลิส [${playlist.name}](${query}) - [${convertTime(res.playlist.duration)}] ทั้งหมด ${tracks.length} เพลงลงในคิวแล้ว`"
+    },
+    "PLAYLISTS": {
+
+    },
+    "ERROR": {
+        "INSERT_VALUE": "ใส่ลิงก์เพลง หรือคำค้นหา",
+        "NO_MATCHES": "`ไม่เจอคำค้นหา ${query} พิมพ์ใหม่อีกครั้ง`"
+    }
+}
