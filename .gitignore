@@ -1,4 +1,8 @@
 node_modules
 .env
 
+databases/*/enmap.sqlite
+databases/*/enmap.sqlite-shm
+databases/*/enmap.sqlite-wal
+
 package-lock.json
