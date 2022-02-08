@@ -27,10 +27,10 @@ module.exports = async (client, queue, song) => {
         }
     }
 
-    let histories = client.histories.get(queue.textChannel.guild.id)
-    if (!Array.isArray(histories)) histories = []
+    let played = client.histories.get(queue.textChannel.guild.id, 'played')
+    if (!Array.isArray(played)) played = []
 
-    histories.push({
+    played.push({
         id: song.id,
         user: {
             id: song.user.id,
@@ -43,9 +43,8 @@ module.exports = async (client, queue, song) => {
         created_at: moment().format('DD-MM-YYYY HH:mm:ss')
     })
 
-    console.log(histories)
     //save it in the db
-    client.histories.set(queue.textChannel.guild.id, histories)
+    client.histories.set(queue.textChannel.guild.id, played, 'played')
 
     updateMusicChannel(client, queue, false, channel, guild.id)
 

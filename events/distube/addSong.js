@@ -13,6 +13,26 @@ module.exports = async (client, queue, song) => {
 
     const thing = new MessageEmbed().setColor(EMBED.COLOR.BOT_EMBED).setDescription(`${eval(client.langs[lang]['MUSIC']['ADD_QUEUE'])}`)
 
+    let requested = client.histories.get(queue.textChannel.guild.id, 'requested')
+    if (!Array.isArray(requested)) requested = []
+
+    requested.push({
+        id: track.id,
+        user: {
+            id: track.user.id,
+            username: track.user.username,
+            discriminator: track.user.discriminator
+        },
+        name: track.name,
+        url: track.url,
+        member: track.member.guild.id,
+        created_at: moment().format('DD-MM-YYYY HH:mm:ss'),
+        type: 'song'
+    })
+
+    //save it in the db
+    client.histories.set(queue.textChannel.guild.id, requested, 'requested')
+
     await updateMusicChannel(client, queue, false, queue.textChannel, guild.id)
 
     queue.textChannel
