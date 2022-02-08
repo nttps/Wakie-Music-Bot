@@ -115,7 +115,7 @@ module.exports.interactionPlayer = async (client, interaction, action) => {
                     })
                     await delay(2000)
                     await interaction.deleteReply()
-                } else if (distubeQueue && distubeQueue.songs.length == 0 && !distubeQueue.autoplay) {
+                } else if (distubeQueue && distubeQueue.songs.length === 0 && !distubeQueue.autoplay) {
                     //edit the current song message
                     return distubeQueue.stop()
                 } else if (distubeQueue) {

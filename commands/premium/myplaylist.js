@@ -2,6 +2,7 @@ const { embedsActionBy, pageQueue } = require('@utils/generateEmbed')
 const delay = require('delay')
 const { MessageEmbed, MessageActionRow, MessageSelectMenu } = require('discord.js')
 const { TrackUtils } = require('erela.js')
+const EMOJIS = require('@settings/emojis')
 
 module.exports = {
     name: `myplaylist`,
@@ -191,6 +192,7 @@ module.exports = {
             case `add`:
             case `เพิ่ม`:
             case `เพลง`:
+            case `เพิ่มเพลง`:
                 {
                     if (!Name) {
                         let playlists = client.playlists.get(message.author.id)
@@ -203,7 +205,7 @@ module.exports = {
                         return message.reply({
                             embeds: [
                                 embedsActionBy(
-                                    `${emoji.msg.ERROR} ผิดพลาด | ไม่ได้ใส่ชื่อเพลย์ลิส \nการใช้งาน: ${prefix}saveplaylist add \`<ชื่อเพลย์ลิสที่เพิ่มเพลง>\` <ชื่อเพลง/ลิงก์>\n\n\n ${description}`
+                                    `${EMOJIS.MSG.ERROR} ผิดพลาด | ไม่ได้ใส่ชื่อเพลย์ลิส \nการใช้งาน: ${prefix}saveplaylist add \`<ชื่อเพลย์ลิสที่เพิ่มเพลง>\` <ชื่อเพลง/ลิงก์>\n\n\n ${description}`
                                 )
                             ]
                         })
@@ -484,6 +486,25 @@ module.exports = {
                 }
                 break
             default:
+                const myplaylist = client.playlists.get(message.author.id)
+                if (!myplaylist)
+                    return message.reply({
+                        embeds: [new MessageEmbed().setColor('RED').setTitle(`ผิดพลาด | ไม่มีเพลย์ลิสนี้`).setDescription(`ไม่สามารลบได้เพราะไม่มีอัลบั้มนี้`)]
+                    })
+                if (Object.size(myplaylist) <= 1)
+                    return message.reply({
+                        embeds: [embedsActionBy(`สร้างเพลย์ลิสโดย \`${prefix}saveplaylist create <ชื่อเพลย์ลิสที่ต้องการบันทึก>\``)]
+                    })
+                let newData = []
+                for (const item in myplaylist) {
+                    if (item === `TEMPLATEQUEUEINFORMATION`) continue
+                    newData.push({
+                        item
+                    })
+                }
+
+                console.log(newData)
+
                 break
         }
     }

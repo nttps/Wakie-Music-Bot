@@ -17,6 +17,7 @@ module.exports = async (client) => {
         }
     }
     ;['client', 'guild', 'message', 'interaction', 'voice'].forEach((x) => loadcommand(x))
+
     await delay(4000)
     console.log(chalk.greenBright(`[INFORMATION] Global Events Loaded`))
 }

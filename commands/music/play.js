@@ -21,7 +21,7 @@ module.exports = {
     },
     joinchannel: true,
     type: 'queuesong',
-    run: async (client, message, args, query, player, es, lang) => {
+    run: async (client, message, args, query, player, command, lang) => {
         console.log(chalk.magenta(`[COMMAND] Play used by ${message.author.tag} from ${message.guild.name}`))
 
         if (!args.length)

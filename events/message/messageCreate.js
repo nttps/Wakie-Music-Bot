@@ -64,6 +64,8 @@ module.exports = {
 
             const args = message.content.trim().split(/ +/)
 
+            console.log(args)
+
             play.run(client, message, args, args.join(' '), player, es, lang, prefix)
 
             return message.delete()
@@ -114,7 +116,7 @@ module.exports = {
         if (!player) player = client.distube.getQueue(message)
 
         try {
-            await command.run(client, message, args, args.join(' '), player, es, lang, prefix)
+            await command.run(client, message, args, args.join(' '), player, name, lang, prefix)
         } catch (err) {
             message.reply(`an error occurred while running the command: ${err.message}`)
         }

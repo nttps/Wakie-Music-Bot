@@ -12,7 +12,9 @@ const { readdirSync } = require('fs')
 const path = require('path')
 const filters = require('@settings/filter')
 const CONFIG = require('@settings/config')
+const moment = require('moment')
 
+moment.locale('th')
 class SystemClient extends Client {
     constructor() {
         super({
@@ -76,7 +78,7 @@ class SystemClient extends Client {
                 //requestOptions: {
                 //  agent //ONLY USE ONE IF YOU KNOW WHAT YOU DO!
                 //},
-                highWaterMark: 1 << 24,
+                highWaterMark: 1 << 25,
                 filter: 'audioonly',
                 quality: 'highestaudio',
                 format: 'audioonly',

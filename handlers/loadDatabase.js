@@ -13,6 +13,12 @@ module.exports = (client) => {
         name: 'autoresume',
         dataDir: './databases/musicsettings'
     })
+
+    client.histories = new Enmap({
+        name: 'histories',
+        dataDir: './databases/musicsettings',
+        ensureProps: false
+    })
     client.settings = new Enmap({
         name: 'settings',
         dataDir: './databases/settings'

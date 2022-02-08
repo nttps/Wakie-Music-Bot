@@ -1,6 +1,9 @@
 const { updateMusicChannel } = require('@utils/systemPlayer')
 const chalk = require('chalk')
 const delay = require('delay')
+const moment = require('moment')
+
+moment.locale('th')
 
 module.exports = async (client, queue, song) => {
     let guild = client.guilds.cache.get(queue.textChannel.guild.id)
@@ -23,6 +26,22 @@ module.exports = async (client, queue, song) => {
                 })
         }
     }
+
+    let histories = client.histories.get(queue.textChannel.guild.id)
+    if (!Array.isArray(histories)) histories = []
+
+    histories.push({
+        id: song.id,
+        user: song.user,
+        name: song.name,
+        url: song.url,
+        member: song.member,
+        created_at: moment().format('DD-MM-YYYY HH:mm:ss')
+    })
+
+    console.log(histories)
+    //save it in the db
+    client.histories.set(queue.textChannel.guild.id, histories)
 
     updateMusicChannel(client, queue, false, channel, guild.id)
 

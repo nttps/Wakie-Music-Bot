@@ -17,6 +17,11 @@ module.exports = {
                     message: '',
                     commandChannel: ''
                 })
+
+                client.histories.ensure(guildid, {
+                    TEMPLATEQUEUEINFORMATION: ['queue', 'sadasd']
+                })
+
                 client.stats.ensure(guildid, {
                     commands: 0,
                     songs: 0
